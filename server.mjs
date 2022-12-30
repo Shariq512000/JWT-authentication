@@ -368,7 +368,7 @@ app.delete('/api/v1/product/:id', (req, res) => {
 
 })
 
-app.put('/product/:id', async (req, res) => {
+app.put('/api/v1/product/:id', async (req, res) => {
 
     const body = req.body;
     const id = req.params.id;
