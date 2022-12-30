@@ -19,6 +19,9 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import LogoutIcon from '@mui/icons-material/Logout';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 import { useState } from 'react';
 import axios from 'axios';
 import "./App.css";
@@ -210,7 +213,7 @@ function App() {
          }
          {
             (state?.isLogin === null) ?
-               <h1>Loading...</h1>
+               <div style={{display: "flex" , justifyContent: 'center' , alignItem: 'center' , minHeight: '100vh'  }}><CircularProgress/></div>
                :
                null
          }

@@ -118,7 +118,7 @@ function Login() {
                 <br />
                 <br />
 
-                <Button color="primary" variant="contained" type="submit">
+                <Button color="primary" variant="outlined" type="submit">
                     Login
                 </Button>
 

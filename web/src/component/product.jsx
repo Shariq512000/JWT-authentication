@@ -26,7 +26,7 @@ import "./product.css";
 
 function Product() {
   let { state, dispatch } = useContext(GlobalContext);
-  
+
   const [products, setProducts] = useState([]);
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
@@ -148,7 +148,6 @@ function Product() {
     onSubmit: (values) => {
       console.log("values: ", values);
       setClickEdit(!clickEdit);
-      setUpdatedOpen(true);
       axios.put(`${state.baseUrl}/product/${currentProduct._id}`, {
 
         name: editFormik.values.name,
