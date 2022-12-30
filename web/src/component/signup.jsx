@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { GlobalContext } from '../context/Context';
 import axios from "axios";
 import { Formik, Form, Field, useFormik } from 'formik';
 import * as yup from 'yup';
@@ -20,6 +22,8 @@ import "./signup.css";
 
 
 function Signup() {
+
+    let { state, dispatch } = useContext(GlobalContext);
 
 
 
