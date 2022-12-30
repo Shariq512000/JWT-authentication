@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { GlobalContext } from '../context/Context';
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { Formik, Form, Field, useFormik } from 'formik';
@@ -23,6 +25,8 @@ import "./product.css";
 
 
 function Product() {
+  let { state, dispatch } = useContext(GlobalContext);
+  
   const [products, setProducts] = useState([]);
   const [open, setOpen] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
