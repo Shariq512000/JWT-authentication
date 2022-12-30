@@ -7,6 +7,13 @@ export const reducer = (state, action) => {
       case "USER_LOGOUT": {
         return { ...state, isLogin: false } // set this to null on purpose, do not change
       }
+
+      case "CLICK_LOGOUT": {
+        return { ...state, clickLoad: false } // set this to null on purpose, do not change
+      }
+      case "CLICK_LOGIN": {
+        return { ...state, clickLoad: true } // set this to null on purpose, do not change
+      }
   
       
       case "TOGGLE_THEME": {

@@ -4,6 +4,8 @@ import { reducer } from './Reducer';
 export const GlobalContext = createContext("Initial Value");
 
 let data = {
+
+    clickLoad: false,
     darkTheme: true,
     user: {},
     isLogin: null,

@@ -15,6 +15,9 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 // import { AiTwotoneEdit } from 'react-icons/ai';
 import { GrUpdate } from 'react-icons/gr';
 import SearchAppBar from "./header";
@@ -42,8 +45,8 @@ function Product() {
 
   const getAllProducts = async () => {
     try {
-      const response = await axios.get(`${state.baseUrl}/products`,{
-        withCredentials:true
+      const response = await axios.get(`${state.baseUrl}/products`, {
+        withCredentials: true
       })
       console.log("response: ", response);
       console.log("data: ", response.data)
@@ -116,14 +119,17 @@ function Product() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      dispatch({type:'CLICK_LOGIN'});
       console.log("values: ", values);
       axios.post(`${state.baseUrl}/product`, {
 
         name: formik.values.name,
         price: formik.values.price,
         description: formik.values.description,
-      })
+      },
+      {withCredentials: true})
         .then(response => {
+          dispatch({type:'CLICK_LOGOUT'});
           let message = response.data.message;
           console.log("message: ", message)
           console.log("response: ", response.data);
@@ -133,6 +139,7 @@ function Product() {
 
         })
         .catch(err => {
+          dispatch({type:'CLICK_LOGOUT'});
           console.log("error: ", err);
           setErrorOpen(true);
         })
@@ -215,9 +222,16 @@ function Product() {
         <br />
         <br />
 
-        <Button color="primary" variant="contained" type="submit">
-          Submit
-        </Button>
+        {(state.clickLoad === false) ?
+
+          <Button color="primary" variant="contained" type="submit">
+            Submit
+          </Button>
+          :
+          <CircularProgress />
+        }
+
+
 
         {/* Successfully Alert */}
 
@@ -283,13 +297,13 @@ function Product() {
       <br />
       <br />
 
-      <div style={{alignSelf:"center"}}>
+      <div style={{ alignSelf: "center" }}>
         {products?.map((eachProduct, i) => (
           <div key={i} className="card">
-          <p><b>Id:  </b>{eachProduct?._id}</p>
-          <p><b>Product Name: </b>{eachProduct?.name}</p>
-          <p><b>Price: </b>{eachProduct?.price}</p>
-          <p><b>Description: </b>{eachProduct?.description}</p>
+            <p><b>Id:  </b>{eachProduct?._id}</p>
+            <p><b>Product Name: </b>{eachProduct?.name}</p>
+            <p><b>Price: </b>{eachProduct?.price}</p>
+            <p><b>Description: </b>{eachProduct?.description}</p>
             <IconButton aria-label="delete" size="large" color="red" style={{ color: "red" }} onClick={() => {
               deleteProduct(eachProduct?._id)
             }} >

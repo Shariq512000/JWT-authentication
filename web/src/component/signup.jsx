@@ -16,6 +16,9 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 import { useState } from "react";
 import "./signup.css";
 
@@ -68,6 +71,7 @@ function Signup() {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            dispatch({type:'CLICK_LOGIN'});
             console.log("values: ", values);
             axios.post(`${state.baseUrl}/signup`, {
 
@@ -79,6 +83,7 @@ function Signup() {
 
             })
                 .then(response => {
+                    dispatch({type:'CLICK_LOGOUT'});
                     let message = response.data.message;
                     console.log("message: ", message)
                     console.log("response: ", response.data);
@@ -86,6 +91,7 @@ function Signup() {
 
                 })
                 .catch(err => {
+                    dispatch({type:'CLICK_LOGOUT'});
                     console.log("error: ", err);
                     setErrorMessage(err.response.data.message);
                     setErrorOpen(true);
@@ -147,9 +153,16 @@ function Signup() {
                 <br />
                 <br />
 
+                {(state.clickLoad === false) ?
+                 
                 <Button color="primary" variant="outlined" type="submit">
                     Signup
                 </Button>
+                :
+                <CircularProgress/> 
+                }
+
+                
 
                 {/* Successfully Alert */}
 
