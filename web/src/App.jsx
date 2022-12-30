@@ -213,7 +213,7 @@ function App() {
          }
          {
             (state?.isLogin === null) ?
-               <div style={{display: "flex" , justifyContent: 'center' , alignItem: 'center' , minHeight: '100vh'  }}><CircularProgress/></div>
+               <div style={{display: "flex" , justifyContent: 'center' , alignItem: 'center' , minHeight: '100%' , minWidth: '100%' , marginTop: "100px"  }}><CircularProgress size={400}/></div>
                :
                null
          }
