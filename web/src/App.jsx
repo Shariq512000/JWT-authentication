@@ -86,7 +86,7 @@ function App() {
       console.log('clicked')
 
       try {
-         let response = await axios.post(`${state.baseUrl}/logout`, {
+         let response = await axios.post(`${state.baseUrl}/logout`, {} , {
             withCredentials: true
          });
          console.log('response: ' , response);
